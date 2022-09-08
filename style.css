@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+body {
+    background-color:cornsilk;
+    margin: 0;
+    margin-top: 10px;
+}
+
+h1 {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 44px;
+    font-family: sans-serif;
+}
+
+p {
+    margin: 0%;
+    padding: 0%;
+}
+
+.watch{
+    font-size: 42px;
+    margin-left: 5%;
+}
+
+div{	
+    text-align: center;
+    margin-top: 8px;
+}
+
+table {
+    /*width: 65vw;*/
+    width: 94%;
+    height: 75vh;
+    
+    background-color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th{
+    text-align: center;
+    font-size: 42px;
+}
+
+td {
+    text-align: center;
+    font-size: 42px;
+}
+/*若葉台のテーブル色指定(2n)*/
+.WakabadaiTable:nth-child(odd) td{
+    background-color: #fff;
+}
+/*若葉台のテーブル色指定(2n+1)*/
+.WakabadaiTable:nth-child(even) td{
+    background-color: #cce198;
+}
+/*鶴川のテーブル色指定(2n)*/
+.TurukawaTable:nth-child(odd) td{
+    background-color: #fff;
+}
+/*鶴川のテーブル色指定(2n+1)*/
+.TurukawaTable:nth-child(even) td{
+    background-color: #97cdf3;
+}
+
+/* footer */
+
+footer{
+    text-align: center;
+    padding: 28px 0 14px 0;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.green{
+    background-color: #a4c454;
+}
+
+.er{
+    color: #ffffff;
+    font-size: 28px;
+} 
+
+/*ボタンの装飾*/
+
+.butt{
+    text-align: center;
+}
+
+.button{
+    width: 168px;
+    height: 84px;
+    padding: 15px;
+    margin: 10px;
+    font-size: 28px;
+
+}
+  

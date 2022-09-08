@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="UTF-8">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>若葉台_時刻表</title>
+  <meta name="robots" content="noindex">
+  <script type="text/javascript">
+
+    setTimeout("location.href='timeW.html'", 1000 * 30);
+
+    const columnsNumber = 7;
+
+    var Nowdate = new Date();
+    var NowHour = Nowdate.getHours();
+    var NowMin = Nowdate.getMinutes();
+    var NowSec = Nowdate.getSeconds();
+    var Week = new Array("日", "月", "火", "水", "木", "金", "土");
+    const Display_time = NowHour * 60 + NowMin;//ディスプレイに表示している時間
+    const grace = 1;//何分後以降に出発するバスを表示する
+
+  </script>
+</head>
+
+<h1 crass=houmen>若葉台方面行き</h1>
+
+<p class="watch">
+  <script>
+    document.writeln(Nowdate.getFullYear().toString() + "年" + (Nowdate.getMonth() + 1).toString() + "月" + Nowdate.getDate().toString() + "日(" + Week[Nowdate.getDay()] + ")" + NowHour + ":" + ('00' + NowMin).slice(-2));
+  </script>
+</p>
+
+<script>
+  //経由
+  const busrouteMap = {
+    00: '運行は終了しました',
+    21: '[鶴21]若葉台',
+    99: ''
+  };
+
+  //混雑度
+  const congestionStatusMap = {
+    11: 'あんまり',
+    12: 'そこそこ',
+    13: 'かなり',
+    99: ''
+  };
+
+  function GetTimeTable()
+  {
+    for (i = 0; true; i++) {
+      if (NowHour === 24)//24時に達した際のエスケープ
+      {
+        if (cc === 0) {
+          via[0] = 00;
+        }
+
+        break;
+      }
+
+      if (ary_hour_timetable.length !== 0)//空配列のエスケープ
+      {
+        if (ary_hour_timetable.length === i) // OutOfLengthのエスケープ
+        {
+          NowHour++;
+          NowMin = 0 - grace;
+          ary_hour_timetable = ary_timetable[NowHour];
+          ary_hour_route = ary_route[NowHour];
+          ary_hour_congestion = ary_congestion[NowHour];
+
+          i = -1;
+        }
+
+        else if (NowMin + grace <= ary_hour_timetable[i])//Show処理
+        {
+          var Sd = ary_hour_timetable[i];
+
+          show[cc] = NowHour + ":" + ('00' + Sd).slice(-2);//Show
+          via[cc] = ary_hour_route[i];//Show
+          congestion[cc] = ary_hour_congestion[i];//Show
+          time_left[cc] = ((NowHour * 60 + Sd) - Display_time).toString() + '分';
+
+          cc++;
+        }
+
+      }
+
+      else {
+        NowHour++;
+        NowMin = 0 - grace;
+        ary_hour_timetable = ary_timetable[NowHour];
+        ary_hour_route = ary_route[NowHour];
+        ary_hour_congestion = ary_congestion[NowHour];
+        i--;
+      }
+
+      if (cc === columnsNumber) break;
+
+    }
+  }
+
+  // 時刻表
+  var ary_timetable = [
+    [],//0
+    [],//1
+    [],//2
+    [],//3
+    [],//4
+    [],//5
+    [10, 30, 50],//6
+    [11, 26, 41, 51],//7
+    [01, 11, 26, 51],//8
+    [30],//9
+    [10, 50],//10
+    [30],//11
+    [10, 50],//12
+    [23],//13
+    [03, 24, 44],//14
+    [03, 24, 44],//15
+    [03, 24, 44],//16
+    [14, 34, 54],//17
+    [14, 34, 54],//18
+    [20, 33, 53],//19
+    [20, 35],//20
+    [13, 51],//21
+    [],//22
+    []//23
+  ];
+
+  //路線
+  var ary_route = [
+    [],//0
+    [],//1
+    [],//2
+    [],//3
+    [],//4
+    [],//5
+    [21, 21, 21],//6
+    [21, 21, 21, 21],//7
+    [21, 21, 21, 21],//8
+    [21],//9
+    [21, 21],//10
+    [21],//11
+    [21, 21],//12
+    [21],//13
+    [21, 21, 21],//14
+    [21, 21, 21],//15
+    [21, 21, 21],//16
+    [21, 21, 21],//17
+    [21, 21, 21],//18
+    [21, 21, 21],//19
+    [21, 21],//20
+    [21, 21],//21
+    [],//22
+    []//23
+  ];
+
+  var ary_congestion = [
+    [],//0
+    [],//1
+    [],//2
+    [],//3
+    [],//4
+    [],//5
+    [11, 11, 11],//6
+    [11, 11, 11, 11],//7
+    [11, 11, 11, 11],//8
+    [11],//9
+    [11, 11],//10
+    [11],//11
+    [11, 11],//12
+    [11],//13
+    [11, 11, 11],//14
+    [11, 11, 11],//15
+    [11, 11, 11],//16
+    [11, 11, 11],//17
+    [11, 11, 11],//18
+    [11, 11, 11],//19
+    [11, 11],//20
+    [11, 11],//21
+    [],//22
+    []//23
+
+  ];
+
+  var show = new Array(99, 99, 99, 99, 99, 99, 99);
+  var via = new Array(99, 99, 99, 99, 99, 99, 99);
+  var congestion = new Array(99, 99, 99, 99, 99, 99, 99);
+  var time_left = new Array(' ', ' ', ' ', ' ', ' ', ' ', ' ');
+
+  var cc = 0;
+
+  var ary_hour_timetable = ary_timetable[NowHour];//配列,現在Hのバス時刻表全取得
+  var ary_hour_route = ary_route[NowHour];//配列,現在Hのバス路線全取得
+  var ary_hour_congestion = ary_congestion[NowHour];//配列,現在Hのバス混雑度全取得
+
+
+  GetTimeTable();
+
+
+  //時刻
+  for (i = 0; i < show.length; i++) {
+    switch (show[i]) {
+      case 99:
+        show[i] = "--:--"
+        break;
+
+    }
+  }
+
+  myTbl3 = new Array
+    (
+      "若葉台駅",
+      "若葉台駅",
+      "若葉台駅",
+      "若葉台駅",
+      "若葉台駅",
+      "若葉台駅"
+    );
+
+
+  myTbl3 = congestion.map((value) => { return congestionStatusMap[value] });
+  via = via.map((value) => { return busrouteMap[value] });
+
+//-->
+</script>
+<body>
+<div>
+
+  <table border="2" cellspacing="5" align="center">
+    <tr>
+
+      <th>出発時間</th>
+      <th>行き先</th>
+      <th>出発まで</th>
+
+      <script type="text/javascript">
+
+        for (i = 0; i < columnsNumber; i++) {
+          document.write(`<tr class='WakabadaiTable'> <td class='time'> ${show[i]} </td>`);//出発時間
+          document.write(`<td class='keiyu'> ${via[i]} </td>`);//行先（経由）
+          document.write(`<td class='nokori'> ${time_left[i]} </td>`);//出発時間まで
+        }
+
+      //-->
+      </script>
+      </tr>
+</table>
+</div>
+
+</body>
+
+</html>
